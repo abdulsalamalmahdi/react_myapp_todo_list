@@ -12,8 +12,7 @@ class AddForm extends Component {
         this.setState({
             [e.target.id]: e.target.value
         });
-
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -21,9 +20,7 @@ class AddForm extends Component {
         // This can result in bad effects because of the reference being passed.
         // You experienced one of those effects.
         this.props.addTodoItem({...this.state});
-
-    }
-
+    };
 
     render() {
         return (

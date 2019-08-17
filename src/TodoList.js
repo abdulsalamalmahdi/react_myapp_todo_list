@@ -1,13 +1,23 @@
 import React from 'react';
+import DeleteButton from "./deleteButton";
 
 // Renamed this from List item
 // Because this is not a single item it represents a list of todo's
-const TodoList = ({todos}, props) => {
+// You also had a mistake here in using the arguments
+// When the TodoList function is called it is passed the props as a single parameter
+// Internally this will look something like TodoList(props)
+// So no second argument the trick you were probably looking for is the one like below
+const TodoList = ({todos, ...props}) => {
     const todosList = todos.map(todo => {
         return (
             <li key={todo.id} className="anything">
-                <input type="checkbox" onClick={props.deleteItem} />
+                <input checked={todo.checked} type="checkbox" onClick={() => {
+                    props.toggleDone(todo);
+                }} />
                 <span> {todo.task} {todo.deadline}</span>
+                <DeleteButton deleteItem={() => {
+                    props.deleteItem(todo);
+                }}/>
             </li>
         );
     });

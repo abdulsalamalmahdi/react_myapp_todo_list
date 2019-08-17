@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import TodoList from './TodoList';
 import AddForm from './add_list_item';
-import DeleteButton from './deleteButton';
 
 class App extends Component {
 
@@ -15,33 +14,43 @@ class App extends Component {
     }
     addTodoItem = (item) => {
         // console.log(item.length);
-        item.id = Math.random();
+        item.id = Math.random(); // GOOD trick with the random
         item.checked = true;
-        let todos = [...this.state.todos, item]
+        let todos = [...this.state.todos, item];
         this.setState({
             todos: todos
         });
-        console.log(item.checked);
-        console.log(this.state.todos)
     }
 
-    deleteItem = (e) => {
-        let todos = [...this.state.todos]
-        todos.checked = !this.state.checked
-        todos = todos.filter(item => item.checked !== false);
+    toggleDone = (todo) => {
+        let todos = [...this.state.todos];
+        todos = todos.map(item => {
+            if (item.id === todo.id) {
+                item.checked = !item.checked;
+            }
+
+            return item;
+        });
         this.setState({
             todos: todos
         });
-    }
+    };
+
+    deleteItem = (todo) => {
+        let todos = [...this.state.todos];
+        todos = todos.filter(item => item.id !== todo.id);
+        this.setState({
+            todos: todos
+        });
+    };
 
     render() {
         return (
             <div className="App">
                 <h1>My firt react app</h1>
                 <p>Welcome My Neggas</p>
-                <TodoList ref="theItem" deleteItem={this.deleteItem} todos={this.state.todos}/>
+                <TodoList deleteItem={this.deleteItem} toggleDone={this.toggleDone} todos={this.state.todos}/>
                 <AddForm addTodoItem={this.addTodoItem}/>
-                <DeleteButton deleteItem={this.deleteItem} ListItem={this.ListItem}/>
 
             </div>
         );
