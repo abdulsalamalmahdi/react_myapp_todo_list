@@ -17,7 +17,10 @@ class AddForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addTodoItem(this.state);
+        // Never pass the state as a reference.
+        // This can result in bad effects because of the reference being passed.
+        // You experienced one of those effects.
+        this.props.addTodoItem({...this.state});
 
     }
 
