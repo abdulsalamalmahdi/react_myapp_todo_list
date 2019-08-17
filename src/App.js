@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ListItem from './list_item';
+import TodoList from './TodoList';
 import AddForm from './add_list_item';
 import DeleteButton from './deleteButton';
 
@@ -39,7 +39,7 @@ class App extends Component {
             <div className="App">
                 <h1>My firt react app</h1>
                 <p>Welcome My Neggas</p>
-                <ListItem ref="theItem" deleteItem={this.deleteItem} todos={this.state.todos}/>
+                <TodoList ref="theItem" deleteItem={this.deleteItem} todos={this.state.todos}/>
                 <AddForm addTodoItem={this.addTodoItem}/>
                 <DeleteButton deleteItem={this.deleteItem} ListItem={this.ListItem}/>
 

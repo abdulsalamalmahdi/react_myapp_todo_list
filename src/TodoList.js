@@ -1,6 +1,8 @@
 import React from 'react';
 
-const ListItem = ({todos}, props) => {
+// Renamed this from List item
+// Because this is not a single item it represents a list of todo's
+const TodoList = ({todos}, props) => {
     console.log(todos);
     const todosList = todos.map(todo => {
         return (
@@ -19,4 +21,4 @@ const ListItem = ({todos}, props) => {
 };
 
 
-export default ListItem;
+export default TodoList;
