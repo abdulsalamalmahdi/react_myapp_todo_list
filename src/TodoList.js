@@ -15,7 +15,10 @@ const TodoList = ({todos}, props) => {
 
     return (
         <div className="todo-list">
-            {todosList}
+            {/*The li's should be wrapped in an ul or it is not valid HTML markup*/}
+            <ul>
+                {todosList}
+            </ul>
         </div>
     );
 };
